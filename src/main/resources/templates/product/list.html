@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html layout:decorator="shared/homelayout"
+	  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<body>
+	<th:block layout:fragment="header">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/productlist.css}" />
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<h2>Product List</h2> <br/>
+		<a href="/mweb/product">Create a Product</a>
+		<a href="/mweb" id="linkBackHome" >Back to home</a><br/><br/>
+		<table class="table table-striped">
+			<thead>
+				<th>Product Number</th>
+				<th>Name</th>
+				<th>Unit Price</th>
+				<th>DATE</th>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.productNumber}"></td>
+					<td th:text="${product.name}"></td>
+					<td th:text="${product.unitPrice}"></td>
+					<td th:text="${product.dateMfd}"></td>
+					<td>
+						<a th:href="@{'/mweb/product/' + ${product.pid}}">Edit</a>&nbsp;
+						<a th:href="@{'/mweb/product/delete/' + ${product.pid}}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+	
+	<th:block layout:fragment="footer">
+	</th:block>
+	
+</body>
+</html>
